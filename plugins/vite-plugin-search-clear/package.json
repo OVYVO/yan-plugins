@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
+    "@vue/compiler-core": "^3.5.1",
+    "@vue/compiler-sfc": "^3.5.1",
     "tsc-alias": "^1.8.10",
     "tslib": "^2.6.3"
   }

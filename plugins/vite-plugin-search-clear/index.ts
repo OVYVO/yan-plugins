@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { parse } from "vue/compiler-sfc";
-import { stringify } from "@padcom/vue-ast-serializer";
+import { stringify } from "./serializer";
 
 const travers = (node) => {
   if (!node.props.some((prop) => prop.name === "clearable")) {

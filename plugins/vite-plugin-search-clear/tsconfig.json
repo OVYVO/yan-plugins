@@ -5,10 +5,12 @@
     "resolveJsonModule": false,
     "esModuleInterop": true,
     "strictNullChecks": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "strictPropertyInitialization": true,
     "noImplicitAny": false,
     "outDir": "./lib",
-    "target": "es5",
+    "target": "es2018",
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
