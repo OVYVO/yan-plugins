@@ -18,7 +18,7 @@ const travers = (node) => {
 };
 export const gogo = () => {
   return {
-    name: "vite-plugin-go",
+    name: "vite-plugin-searchform-clear",
     enforce: "pre",
     transform(src, id) {
       if (!id.endsWith("App.vue")) return;
@@ -50,7 +50,6 @@ export const gogo = () => {
       // 返回修改后的模板代码
       return {
         code,
-        //code: code.replace(descriptor.template.content, code),
         map: null, // 如果需要source map，这里需要正确处理
       };
     },
