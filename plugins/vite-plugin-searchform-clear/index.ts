@@ -1,9 +1,9 @@
-// @ts-nocheck
-import { parse } from "vue/compiler-sfc";
+import { parse } from "@vue/compiler-sfc";
 import { stringify } from "./serializer";
+import type { SFCParseResult } from "@vue/compiler-sfc";
 
-const travers = (node) => {
-  if (!node.props.some((prop) => prop.name === "clearable")) {
+const travers = (node: any) => {
+  if (!node.props.some((prop: any) => prop.name === "clearable")) {
     node.props.push({
       type: 6 /* ATTRIBUTE */,
       name: ":clearable",
@@ -23,13 +23,14 @@ export const gogo = () => {
     transform(src, id) {
       if (!id.endsWith("App.vue")) return;
       const { descriptor } = parse(src);
-      if (descriptor.template.type !== "template") return;
+      if (descriptor!.template!.type !== "template") return;
       function walkNode(nodeList = []) {
         if (!Array.isArray(nodeList)) return;
-        nodeList.forEach((node) => {
+        nodeList.forEach((node: any) => {
           const { props = [] } = node;
           if (!props.length) return;
-          const target = props.find((item) => item.name == "class") || {};
+          const target: any =
+            props.find((item: any) => item.name == "class") || {};
           const targetClass = target?.value?.content ?? "";
           if (node.type === 1 && node.tag.includes("el-")) {
             travers(node);
@@ -44,8 +45,8 @@ export const gogo = () => {
           }
         });
       }
-      walkNode(descriptor.template.ast.children);
-      const code = stringify({ descriptor });
+      walkNode(descriptor?.template?.ast?.children as undefined);
+      const code = stringify({ descriptor } as SFCParseResult);
 
       // 返回修改后的模板代码
       return {
