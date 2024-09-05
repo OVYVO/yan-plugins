@@ -16,7 +16,8 @@ const travers = (node: any) => {
     });
   }
 };
-export const gogo = () => {
+export const gogo = ({ excludes = [] } = {}) => {
+  let excludesForm = ["el-button", ...excludes];
   return {
     name: "vite-plugin-searchform-clear",
     enforce: "pre",
@@ -32,7 +33,7 @@ export const gogo = () => {
           const target: any =
             props.find((item: any) => item.name == "class") || {};
           const targetClass = target?.value?.content ?? "";
-          if (node.type === 1 && node.tag.includes("el-")) {
+          if (node.type === 1 && !excludesForm.includes(node.tag)) {
             travers(node);
           }
           if (
