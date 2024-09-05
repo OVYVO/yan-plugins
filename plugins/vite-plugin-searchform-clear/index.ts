@@ -16,7 +16,7 @@ const travers = (node: any) => {
     });
   }
 };
-export const gogo = ({ excludes = [] } = {}) => {
+export const searchFormClear = ({ excludes = [] } = {}) => {
   let excludesForm = ["el-button", ...excludes];
   return {
     name: "vite-plugin-searchform-clear",
