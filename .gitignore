@@ -1,4 +1,5 @@
 node_modules
+lib
 
 # File
 pnpm-lock.yaml
