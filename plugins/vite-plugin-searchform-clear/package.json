@@ -2,10 +2,17 @@
   "name": "@ovyvo/vite-plugin-searchform-clear",
   "version": "1.0.0",
   "description": "A vite plugin for batch adding clearable attributes to filter box form elements",
-  "main": "lib/index.js",
+  "main": "lib/index.mjs",
   "scripts": {
-    "build": "rimraf lib && tsc && tsc-alias"
+    "build": "rimraf lib && unbuild"
   },
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -29,7 +36,6 @@
     "@types/node": "^20.14.9",
     "@vue/compiler-core": "^3.5.1",
     "@vue/compiler-sfc": "^3.5.1",
-    "tsc-alias": "^1.8.10",
-    "tslib": "^2.6.3"
+    "unbuild": "^2.0.0"
   }
 }
