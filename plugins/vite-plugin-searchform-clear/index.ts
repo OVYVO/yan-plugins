@@ -20,7 +20,7 @@ export const gogo = () => {
   return {
     name: "vite-plugin-searchform-clear",
     enforce: "pre",
-    transform(src, id) {
+    transform(src: any, id: string) {
       if (!id.endsWith("App.vue")) return;
       const { descriptor } = parse(src);
       if (descriptor!.template!.type !== "template") return;
