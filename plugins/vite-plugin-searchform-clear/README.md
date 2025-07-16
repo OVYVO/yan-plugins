@@ -23,7 +23,7 @@ pnpm i @ovyvo/vite-plugin-searchform-clear -D
 
 ```ts
 //vite.config.ts
-import { searchFormClear } from "./src/plugin/myPlugin.js";
+import { searchFormClear } from "@ovyvo/vite-plugin-searchform-clear";
 
 export default defineConfig({
   plugins: [searchFormClear()],

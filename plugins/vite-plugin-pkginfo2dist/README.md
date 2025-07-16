@@ -1,37 +1,43 @@
-<h1 align="center">vite-plugin-searchform-clear</h1>
+<h1 align="center">vite-plugin-pkginfo2dist</h1>
 
 <p align="center">
-  A vite plugin for batch adding clearable attributes to filter box form elements
+  A vite plugin for copy package info to dist dict
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@ovyvo/vite-plugin-searchform-clear">
-    <img src="https://img.shields.io/npm/v/@ovyvo/vite-plugin-searchform-clear?color=orange&label=" alt="version" />
+  <a href="https://www.npmjs.com/package/@ovyvo/vite-plugin-pkginfo2dist">
+    <img src="https://img.shields.io/npm/v/@ovyvo/vite-plugin-pkginfo2dist?color=orange&label=" alt="version" />
   </a>
-  <a href="https://github.com/qmhc/@ovyvo/vite-plugin-searchform-clear/blob/main/LICENSE">
-    <img src="https://img.shields.io/npm/l/@ovyvo/vite-plugin-searchform-clear" alt="license" />
+  <a href="https://github.com/qmhc/@ovyvo/vite-plugin-pkginfo2dist/blob/main/LICENSE">
+    <img src="https://img.shields.io/npm/l/@ovyvo/vite-plugin-pkginfo2dist" alt="license" />
   </a>
 </p>
 
 ## 安装
 
 ```sh
-pnpm i @ovyvo/vite-plugin-searchform-clear -D
+pnpm i @ovyvo/vite-plugin-pkginfo2dist -D
 ```
 
 ## 使用
 
 ```ts
 //vite.config.ts
-import { searchFormClear } from "./src/plugin/myPlugin.js";
+import { pkginfo2dist } from "@ovyvo/vite-plugin-pkginfo2dist";
 
 export default defineConfig({
-  plugins: [searchFormClear()],
+  plugins: [pkginfo2dist({
+    fields:[],
+    fileName: 'pkg_info.json'
+    customFields:{}
+  })],
 });
 ```
 
 ## 参数
 
-| 属性     | 描述                            | 类型          | 默认值        |
-| -------- | ------------------------------- | ------------- | ------------- |
-| excludes | 排除无需自动添加属性的 formItem | Array<string> | ['el-button'] |
+| 属性         | 描述             | 类型                | 默认值             |
+| ------------ | ---------------- | ------------------- | ------------------ |
+| fields       | 需要 copy 的字段 | Array<string>       | ['name','version'] |
+| fileName     | 信息保存文件     | string              | pkg_info.json      |
+| customFields | 自定义信息       | Record<string, any> | {}                 |
