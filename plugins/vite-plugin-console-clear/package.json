@@ -1,0 +1,42 @@
+{
+  "name": "@ovyvo/vite-plugin-form-autoattrs",
+  "version": "1.0.0",
+  "description": "A vite plugin for auto add attribute to form-item",
+  "main": "lib/index.mjs",
+  "scripts": {
+    "build": "rimraf lib && unbuild"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "plugin",
+    "vite"
+  ],
+  "author": "vue12306@163.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OVYVO/yan-plugins"
+  },
+  "bugs": {
+    "url": "https://github.com/OVYVO/yan-plugins/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "magic-string": "^0.30.17",
+    "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@vue/compiler-core": "^3.5.1",
+    "@vue/compiler-sfc": "^3.5.1",
+    "unbuild": "^2.0.0"
+  }
+}

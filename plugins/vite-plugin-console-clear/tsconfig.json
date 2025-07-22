@@ -1,0 +1,20 @@
+{
+  "include": ["src/index.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "resolveJsonModule": false,
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "strictPropertyInitialization": true,
+    "noImplicitAny": false,
+    "outDir": "./lib",
+    "target": "es2018",
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "tslib": ["node_modules/tslib/tslib.d.ts"]
+    }
+  }
+}
