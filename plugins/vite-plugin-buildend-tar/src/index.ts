@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 
 const uploadToOSS = async (fileName: string, filePath: string) => {
   const client = new OSS({
-    region: "oss-cn-beijing",
+    region: "oss-cn-shanghai",
     accessKeyId: "your-accessKeyId",
     accessKeySecret: "your-accessKeySecret",
     bucket: "jg-deliver",
