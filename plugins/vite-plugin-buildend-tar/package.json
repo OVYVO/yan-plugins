@@ -1,0 +1,43 @@
+{
+  "name": "@ovyvo/vite-plugin-buildend-tar",
+  "version": "1.0.0",
+  "description": "A vite plugin for Package into tar.gz compressed file",
+  "main": "lib/index.mjs",
+  "scripts": {
+    "build": "rimraf lib && unbuild"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    }
+  },
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "plugin",
+    "vite"
+  ],
+  "author": "vue12306@163.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OVYVO/yan-plugins"
+  },
+  "bugs": {
+    "url": "https://github.com/OVYVO/yan-plugins/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "typescript": "^5.5.3",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@vue/compiler-core": "^3.5.1",
+    "@vue/compiler-sfc": "^3.5.1",
+    "unbuild": "^2.0.0"
+  }
+}
