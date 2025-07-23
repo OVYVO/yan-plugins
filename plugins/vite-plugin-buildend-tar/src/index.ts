@@ -10,7 +10,7 @@ const uploadToOSS = async (fileName: string, filePath: string) => {
     region: "oss-cn-beijing",
     accessKeyId: "your-accessKeyId",
     accessKeySecret: "your-accessKeySecret",
-    bucket: "your-bucket-name",
+    bucket: "jg-deliver",
   });
   try {
     const result = await client.put(fileName, filePath);
@@ -20,7 +20,7 @@ const uploadToOSS = async (fileName: string, filePath: string) => {
     throw err;
   }
 };
-const buildEndTar = () => {
+const buildEndTar = ({ target_oss_folder = "jg-web-test" } = {}) => {
   let webStaticFilePath: string;
   let electronStaticFilePath: string;
   let mode: string;
@@ -59,8 +59,10 @@ const buildEndTar = () => {
         archive.directory(electronStaticFilePath, "app");
         await archive.finalize();
         console.log(`🚀 构建产物打包完成，准备上传阿里云OSS...`);
-        const ossFileName = `${path.basename(zipFilePath)}`;
-        const fileUrl = await uploadToOSS(zipFilePath, ossFileName);
+        const ossFileName = `${target_oss_folder}/${path.basename(
+          zipFilePath
+        )}`;
+        const fileUrl = await uploadToOSS(ossFileName, zipFilePath);
         console.log(`🚀 文件已上传至阿里云OSS，访问地址: ${fileUrl}`);
       },
     },
