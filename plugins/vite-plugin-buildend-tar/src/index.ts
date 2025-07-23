@@ -2,6 +2,23 @@ import fs from "fs";
 import path from "path";
 import archiver from "archiver";
 import { createGzip } from "zlib";
+import OSS from "ali-oss";
+
+const uploadToOSS = async (fileName: string, filePath: string) => {
+  const client = new OSS({
+    region: "oss-cn-beijing",
+    accessKeyId: "your-accessKeyId",
+    accessKeySecret: "your-accessKeySecret",
+    bucket: "your-bucket-name",
+  });
+  try {
+    const result = await client.put(fileName, filePath);
+    return result.url;
+  } catch (err) {
+    console.error(`Upload failed:`, err);
+    throw err;
+  }
+};
 
 const formatTime = (date: Date) => {
   const year = date.getFullYear();
@@ -50,7 +67,10 @@ const buildEndTar = () => {
         archive.directory(webStaticFilePath, "web");
         archive.directory(electronStaticFilePath, "app");
         await archive.finalize();
-        console.log(`🚀 构建产物已打包，任务结束!`);
+        console.log(`🚀 构建产物打包完成，准备上传阿里云OSS...`);
+        const ossFileName = `${path.basename(zipFilePath)}`;
+        const fileUrl = await uploadToOSS(zipFilePath, ossFileName);
+        console.log(`🚀 文件已上传至阿里云OSS，访问地址: ${fileUrl}`);
       },
     },
   };
