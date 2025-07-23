@@ -11,7 +11,7 @@ export const searchFormClear = (
   }
 ) => {
   return {
-    name: "vite-plugin-form-autoattrs",
+    name: "vite-plugin-elformitem-autoattrs",
     enforce: "pre",
     transform(code: any, id: any) {
       if (!/views.*\.vue$/.test(id)) return;
@@ -23,7 +23,7 @@ export const searchFormClear = (
           .map((tag) => tag.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
           .join("|");
         const inputRegex = new RegExp(`<(${componentTags})\\b[^>]*?\\/?>`, "g");
-        let match;
+        let match: any;
         while ((match = inputRegex.exec(code)) !== null) {
           const tag = match[0];
           const tagStart = match.index;
