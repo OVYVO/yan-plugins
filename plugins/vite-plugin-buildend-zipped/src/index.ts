@@ -5,32 +5,34 @@ import { createGzip } from "zlib";
 import OSS from "ali-oss";
 import dayjs from "dayjs";
 
-const uploadToOSS = async (fileName: string, filePath: string) => {
-  const accessKeyId = process.env.OSS_ACCESS_KEY_ID || "";
-  const accessKeySecret = process.env.OSS_ACCESS_KEY_SECRET || "";
-  if (!accessKeyId || !accessKeySecret) {
-    console.log("❌ 未正确配置OSS accessKeyId或accessKeySecret");
-    return;
-  }
-  const client = new OSS({
-    region: "oss-cn-shanghai",
-    accessKeyId,
-    accessKeySecret,
-    bucket: "jg-deliver",
-    authorizationV4: true,
-  } as OSS.Options);
-  try {
-    const result = await client.put(fileName, filePath);
-    return result.url;
-  } catch (err) {
-    console.error(`Upload failed:`, err);
-    throw err;
-  }
+const uploadToOSS = (fileName: string, filePath: string) => {
+  return new Promise(async (resolve, reject) => {
+    const accessKeyId = process.env.OSS_ACCESS_KEY_ID || "";
+    const accessKeySecret = process.env.OSS_ACCESS_KEY_SECRET || "";
+    if (!accessKeyId || !accessKeySecret) {
+      console.log("🚨 未读取到OSS_ACCESS_KEY_ID或OSS_ACCESS_KEY_SECRET配置");
+      reject();
+    }
+    const client = new OSS({
+      region: "oss-cn-shanghai",
+      accessKeyId,
+      accessKeySecret,
+      bucket: "jg-deliver",
+      authorizationV4: true,
+    } as OSS.Options);
+    try {
+      const result = await client.put(fileName, filePath);
+      resolve(result.url);
+    } catch (err) {
+      console.log("🚨 OSS上传失败", err);
+      reject();
+    }
+  });
 };
 const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
-  let webStaticFilePath: string;
-  let appStaticFilePath: string;
-  let mode: string;
+  let webStaticFilePath;
+  let appStaticFilePath;
+  let mode;
   return {
     name: "vite-plugin-buildend-zipped",
     apply: "build",
@@ -62,8 +64,10 @@ const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
         archive.pipe(gzip).pipe(output);
         archive.directory(webStaticFilePath, "web");
         archive.directory(appStaticFilePath, "app");
+        console.log();
+        console.log(`🚚 开始构建产物压缩包...`);
         await archive.finalize();
-        console.log(`🚀 构建产物打包完成，准备上传阿里云OSS...`);
+        console.log(`👽️ 构建产物压缩包完成，准备上传阿里云OSS...`);
         const ossFileName = `${target_oss_object}/${path.basename(
           zipFilePath
         )}`;
