@@ -27,7 +27,7 @@ const uploadToOSS = async (fileName: string, filePath: string) => {
     throw err;
   }
 };
-const buildEndZipped = ({ target_oss_folder = "jg-web-test" } = {}) => {
+const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
   let webStaticFilePath: string;
   let appStaticFilePath: string;
   let mode: string;
@@ -65,7 +65,7 @@ const buildEndZipped = ({ target_oss_folder = "jg-web-test" } = {}) => {
         archive.directory(appStaticFilePath, "app");
         await archive.finalize();
         console.log(`🚀 构建产物打包完成，准备上传阿里云OSS...`);
-        const ossFileName = `${target_oss_folder}/${path.basename(
+        const ossFileName = `${target_oss_object}/${path.basename(
           zipFilePath
         )}`;
         const fileUrl = await uploadToOSS(ossFileName, zipFilePath);
