@@ -17,7 +17,8 @@ const uploadToOSS = async (fileName: string, filePath: string) => {
     accessKeyId,
     accessKeySecret,
     bucket: "jg-deliver",
-  });
+    authorizationV4: true,
+  } as OSS.Options);
   try {
     const result = await client.put(fileName, filePath);
     return result.url;
