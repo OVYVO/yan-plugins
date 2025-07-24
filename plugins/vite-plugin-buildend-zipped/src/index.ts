@@ -22,7 +22,7 @@ const uploadToOSS = async (fileName: string, filePath: string) => {
 };
 const buildEndZipped = ({ target_oss_folder = "jg-web-test" } = {}) => {
   let webStaticFilePath: string;
-  let electronStaticFilePath: string;
+  let appStaticFilePath: string;
   let mode: string;
 
   return {
@@ -30,7 +30,7 @@ const buildEndZipped = ({ target_oss_folder = "jg-web-test" } = {}) => {
     apply: "build",
     configResolved(viteConfig: any) {
       webStaticFilePath = path.resolve(viteConfig.build.outDir);
-      electronStaticFilePath = path.resolve(process.cwd(), "dist/appImage");
+      appStaticFilePath = path.resolve(process.cwd(), "dist/appImage");
       mode = viteConfig.mode;
     },
     closeBundle: {
@@ -56,7 +56,7 @@ const buildEndZipped = ({ target_oss_folder = "jg-web-test" } = {}) => {
         archive.pipe(output);
         archive.pipe(gzip);
         archive.directory(webStaticFilePath, "web");
-        archive.directory(electronStaticFilePath, "app");
+        archive.directory(appStaticFilePath, "app");
         await archive.finalize();
         console.log(`🚀 构建产物打包完成，准备上传阿里云OSS...`);
         const ossFileName = `${target_oss_folder}/${path.basename(
