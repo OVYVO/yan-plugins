@@ -32,7 +32,7 @@ const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
   let appStaticFilePath: string;
   let mode: string;
   return {
-    name: "vite-plugin-buildend-tar",
+    name: "vite-plugin-buildend-zipped",
     apply: "build",
     configResolved(viteConfig: any) {
       webStaticFilePath = path.resolve(viteConfig.build.outDir);
@@ -59,8 +59,7 @@ const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
           zlib: { level: 9 },
         });
         const gzip = createGzip();
-        archive.pipe(output);
-        archive.pipe(gzip);
+        archive.pipe(gzip).pipe(output);
         archive.directory(webStaticFilePath, "web");
         archive.directory(appStaticFilePath, "app");
         await archive.finalize();
