@@ -20,7 +20,7 @@ const uploadToOSS = async (fileName: string, filePath: string) => {
     throw err;
   }
 };
-const buildEndTar = ({ target_oss_folder = "jg-web-test" } = {}) => {
+const buildEndZipped = ({ target_oss_folder = "jg-web-test" } = {}) => {
   let webStaticFilePath: string;
   let electronStaticFilePath: string;
   let mode: string;
@@ -69,4 +69,4 @@ const buildEndTar = ({ target_oss_folder = "jg-web-test" } = {}) => {
   };
 };
 
-export default buildEndTar;
+export default buildEndZipped;
