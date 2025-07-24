@@ -6,10 +6,16 @@ import OSS from "ali-oss";
 import dayjs from "dayjs";
 
 const uploadToOSS = async (fileName: string, filePath: string) => {
+  const accessKeyId = process.env.OSS_ACCESS_KEY_ID || "";
+  const accessKeySecret = process.env.OSS_ACCESS_KEY_SECRET || "";
+  if (!accessKeyId || !accessKeySecret) {
+    console.log("❌ 未正确配置OSS accessKeyId或accessKeySecret");
+    return;
+  }
   const client = new OSS({
     region: "oss-cn-shanghai",
-    accessKeyId: "your-accessKeyId",
-    accessKeySecret: "your-accessKeySecret",
+    accessKeyId,
+    accessKeySecret,
     bucket: "jg-deliver",
   });
   try {
@@ -24,7 +30,6 @@ const buildEndZipped = ({ target_oss_folder = "jg-web-test" } = {}) => {
   let webStaticFilePath: string;
   let appStaticFilePath: string;
   let mode: string;
-
   return {
     name: "vite-plugin-buildend-tar",
     apply: "build",
