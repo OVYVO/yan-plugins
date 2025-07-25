@@ -29,10 +29,13 @@ const uploadToOSS = (fileName: string, filePath: string) => {
     }
   });
 };
-const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
-  let webStaticFilePath;
-  let appStaticFilePath;
-  let mode;
+const buildEndZipped = ({
+  needUpload = true,
+  target_oss_object = "jg-web-test",
+} = {}) => {
+  let webStaticFilePath: string;
+  let appStaticFilePath: string;
+  let mode: string;
   return {
     name: "vite-plugin-buildend-zipped",
     apply: "build",
@@ -67,7 +70,10 @@ const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
         console.log();
         console.log(`🚚 开始构建产物压缩包...`);
         await archive.finalize();
-        console.log(`👽️ 构建产物压缩包完成，准备上传阿里云OSS...`);
+        console.log(
+          `👽️ 构建产物压缩包完成${needUpload ? "，准备上传阿里云OSS..." : ""}`
+        );
+        if (!needUpload) return;
         const ossFileName = `${target_oss_object}/${path.basename(
           zipFilePath
         )}`;

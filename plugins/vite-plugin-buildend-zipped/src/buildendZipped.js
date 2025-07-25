@@ -29,7 +29,10 @@ const uploadToOSS = (fileName, filePath) => {
     }
   });
 };
-const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
+export const buildEndZipped = ({
+  needUpload = true,
+  target_oss_object = "jg-web-test",
+} = {}) => {
   let webStaticFilePath;
   let appStaticFilePath;
   let mode;
@@ -67,7 +70,10 @@ const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
         console.log();
         console.log(`🚚 开始构建产物压缩包...`);
         await archive.finalize();
-        console.log(`👽️ 构建产物压缩包完成，准备上传阿里云OSS...`);
+        console.log(
+          `👽️ 构建产物压缩包完成${needUpload ? "，准备上传阿里云OSS..." : ""}`
+        );
+        if (!needUpload) return;
         const ossFileName = `${target_oss_object}/${path.basename(
           zipFilePath
         )}`;
@@ -77,5 +83,3 @@ const buildEndZipped = ({ target_oss_object = "jg-web-test" } = {}) => {
     },
   };
 };
-
-export default buildEndZipped;
