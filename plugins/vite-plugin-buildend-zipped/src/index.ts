@@ -45,8 +45,8 @@ export const buildEndZipped = ({
   project_shortname = "pmg",
   target_oss_object = "jg-web-test/main-server",
 } = {}) => {
-  let webStaticFilePath;
-  let appStaticFilePath;
+  let webStaticFilePath: string;
+  let appStaticFilePath: string;
   let mode;
   return {
     name: "vite-plugin-buildend-zipped",
