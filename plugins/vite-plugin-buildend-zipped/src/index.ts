@@ -47,7 +47,7 @@ export const buildEndZipped = ({
 } = {}) => {
   let webStaticFilePath: string;
   let appStaticFilePath: string;
-  let mode;
+  let mode: string;
   return {
     name: "vite-plugin-buildend-zipped",
     apply: "build",
