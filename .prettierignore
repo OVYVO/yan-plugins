@@ -1,0 +1,10 @@
+.github
+.husky
+.vscode
+/public/**
+/node_modules/**
+/lib
+**/*.svg
+**/*.sh
+
+
