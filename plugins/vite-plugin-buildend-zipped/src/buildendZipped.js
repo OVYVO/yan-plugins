@@ -39,11 +39,7 @@ const uploadToOSS = (ossSavePath, originPaths = []) => {
     }
   })
 }
-export default function buildEndZipped({
-  needUpload = true,
-  proShortName = "pmg",
-  targetOssObject = "jg-web-test/main-server"
-} = {}) {
+export default function buildEndZipped({ needUpload = true, proShortName = "", targetOssObject = "" } = {}) {
   let webStaticFilePath
   let appStaticFilePath
   let mode
@@ -59,33 +55,36 @@ export default function buildEndZipped({
       sequential: true,
       order: "post",
       handler: async () => {
-        if (mode !== "prod") return
+        if (mode !== "online") return
         if (!proShortName) return console.log("🚨 请填写项目名称简写，例如：pmg")
         if (!targetOssObject) return console.log("🚨 请填写AliOSS存储对象，例如：jg-web-test/main-server")
         const packageJsonPath = path.resolve(process.cwd(), "package.json")
         if (!fs.existsSync(packageJsonPath)) return
         const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"))
+        const webPathBaseName = `${proShortName}-frontend-${packageJson.version}`
         const appX86PathBaseName = `${proShortName}-app-${packageJson.version}-x86_64`
         const appArmPathBaseName = `${proShortName}-app-${packageJson.version}-arm64`
         const pkgPath = path.resolve(process.cwd(), "dist", `${packageJson.version}`)
-        const webPath = path.resolve(pkgPath, `${proShortName}-frontend-${packageJson.version}.tar.gz`)
+        const webPath = path.resolve(pkgPath, `${webPathBaseName}.tar.gz`)
         const appX86Path = path.resolve(pkgPath, `${appX86PathBaseName}.tar.gz`)
         const appArmPath = path.resolve(pkgPath, `${appArmPathBaseName}.tar.gz`)
         if (fs.existsSync(pkgPath)) fs.rmSync(pkgPath, { recursive: true, force: true })
         fs.mkdirSync(pkgPath, { recursive: true })
         console.log(`📁 成功创建产物目录：${pkgPath}`)
         console.log(`🚚 开始构建产物压缩包`)
+        const isMac = process.platform === "darwin"
+        const macIgnore = isMac ? ["**/.DS_Store", "**/.AppleDouble", "**/__MACOSX/**"] : []
         for (const item of [webPath, appX86Path, appArmPath]) {
           const archive = archiver("tar", { zlib: { level: 9 } })
           const gzip = createGzip()
           const output = fs.createWriteStream(item)
           archive.pipe(gzip).pipe(output)
           if (item === webPath && fs.existsSync(webStaticFilePath)) {
-            archive.directory(webStaticFilePath, false)
+            archive.glob("**/*", { cwd: webStaticFilePath, ignore: macIgnore }, { prefix: `${webPathBaseName}` })
           } else if (item === appX86Path && fs.existsSync(appStaticFilePath)) {
-            archive.glob("**/*x86_64*", { cwd: appStaticFilePath }, { prefix: appX86PathBaseName })
+            archive.glob("**/*x86_64*", { cwd: appStaticFilePath, ignore: macIgnore }, { prefix: appX86PathBaseName })
           } else if (item === appArmPath && fs.existsSync(appStaticFilePath)) {
-            archive.glob("**/*arm64*", { cwd: appStaticFilePath }, { prefix: appArmPathBaseName })
+            archive.glob("**/*arm64*", { cwd: appStaticFilePath, ignore: macIgnore }, { prefix: appArmPathBaseName })
           }
           await archive.finalize()
         }
