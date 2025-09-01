@@ -80,7 +80,7 @@ export default function buildEndZipped({
         const appX86Path = path.resolve(pkgPath, `${appX86PathBaseName}.tar.gz`)
         const appArmPath = path.resolve(pkgPath, `${appArmPathBaseName}.tar.gz`)
         const appX86CwdPath = path.resolve(appStaticFilePath, appX86PathBaseName)
-        const appArmCwdPath = path.resolve(appStaticFilePath, appArmPath)
+        const appArmCwdPath = path.resolve(appStaticFilePath, appArmPathBaseName)
         console.log(`🚚 开始构建产物压缩包`)
         const macIgnore = ["**/.DS_Store", "**/.AppleDouble", "**/__MACOSX/**"]
         const zipTaskList = needBuildElectron ? [webPath, appX86Path, appArmPath] : [webPath]
