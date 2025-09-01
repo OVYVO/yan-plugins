@@ -41,11 +41,13 @@ const uploadToOSS = (ossSavePath: string, originPaths: string[] = []) => {
 }
 export const buildEndZipped = ({
   needUpload = true,
-  proShortName = "pmg",
-  targetOssObject = "jg-web-test/main-server"
+  needBuildElectron = true,
+  proShortName = "",
+  targetOssObject = ""
 } = {}) => {
   let webStaticFilePath: string
   let appStaticFilePath: string
+  let packageJsonPath: string
   let mode: string
   return {
     name: "vite-plugin-buildend-zipped",
@@ -53,46 +55,53 @@ export const buildEndZipped = ({
     configResolved(viteConfig: any) {
       webStaticFilePath = path.resolve(viteConfig.build.outDir)
       appStaticFilePath = path.resolve(process.cwd(), "dist/appImage")
+      packageJsonPath = path.resolve(process.cwd(), "package.json")
       mode = viteConfig.mode
     },
     closeBundle: {
       sequential: true,
       order: "post",
       handler: async () => {
-        if (mode !== "prod") return
+        if (mode !== "online") return
         if (!proShortName) return console.log("🚨 请填写项目名称简写，例如：pmg")
-        if (!targetOssObject) return console.log("🚨 请填写AliOSS存储对象，例如：jg-web-test/main-server")
-        const packageJsonPath = path.resolve(process.cwd(), "package.json")
+        if (!targetOssObject) return console.log("🚨 请填写AliOSS存储对象，例如：pmg/main-server")
         if (!fs.existsSync(packageJsonPath)) return
-        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"))
-        const appX86PathBaseName = `${proShortName}-app-${packageJson.version}-x86_64`
-        const appArmPathBaseName = `${proShortName}-app-${packageJson.version}-arm64`
-        const pkgPath = path.resolve(process.cwd(), "dist", `${packageJson.version}`)
-        const webPath = path.resolve(pkgPath, `${proShortName}-frontend-${packageJson.version}.tar.gz`)
-        const appX86Path = path.resolve(pkgPath, `${appX86PathBaseName}.tar.gz`)
-        const appArmPath = path.resolve(pkgPath, `${appArmPathBaseName}.tar.gz`)
+        if (!fs.existsSync(webStaticFilePath)) return
+        if (!fs.existsSync(appStaticFilePath) && needBuildElectron) return
+        const pkgVersion = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"))["version"]
+        const pkgPath = path.resolve(process.cwd(), "dist", `${pkgVersion}`)
         if (fs.existsSync(pkgPath)) fs.rmSync(pkgPath, { recursive: true, force: true })
         fs.mkdirSync(pkgPath, { recursive: true })
         console.log(`📁 成功创建产物目录：${pkgPath}`)
+        const webPathBaseName = `${proShortName}-frontend-${pkgVersion}`
+        const appX86PathBaseName = `${proShortName}-app-${pkgVersion}-x86_64`
+        const appArmPathBaseName = `${proShortName}-app-${pkgVersion}-arm64`
+        const webPath = path.resolve(pkgPath, `${webPathBaseName}.tar.gz`)
+        const appX86Path = path.resolve(pkgPath, `${appX86PathBaseName}.tar.gz`)
+        const appArmPath = path.resolve(pkgPath, `${appArmPathBaseName}.tar.gz`)
+        const appX86CwdPath = path.resolve(appStaticFilePath, appX86PathBaseName)
+        const appArmCwdPath = path.resolve(appStaticFilePath, appArmPathBaseName)
         console.log(`🚚 开始构建产物压缩包`)
-        for (const item of [webPath, appX86Path, appArmPath]) {
+        const macIgnore = ["**/.DS_Store", "**/.AppleDouble", "**/__MACOSX/**"]
+        const zipTaskList = needBuildElectron ? [webPath, appX86Path, appArmPath] : [webPath]
+        for (const item of zipTaskList) {
           const archive = archiver("tar", { zlib: { level: 9 } })
           const gzip = createGzip()
           const output = fs.createWriteStream(item)
           archive.pipe(gzip).pipe(output)
-          if (item === webPath && fs.existsSync(webStaticFilePath)) {
-            archive.directory(webStaticFilePath, false)
-          } else if (item === appX86Path && fs.existsSync(appStaticFilePath)) {
-            archive.glob("**/*x86_64*", { cwd: appStaticFilePath }, { prefix: appX86PathBaseName })
-          } else if (item === appArmPath && fs.existsSync(appStaticFilePath)) {
-            archive.glob("**/*arm64*", { cwd: appStaticFilePath }, { prefix: appArmPathBaseName })
+          if (item === webPath) {
+            archive.glob("**/*", { cwd: webStaticFilePath, ignore: macIgnore }, { prefix: webPathBaseName })
+          } else if (item === appX86Path) {
+            archive.glob("**/*", { cwd: appX86CwdPath, ignore: macIgnore }, { prefix: appX86PathBaseName })
+          } else if (item === appArmPath) {
+            archive.glob("**/*", { cwd: appArmCwdPath, ignore: macIgnore }, { prefix: appArmPathBaseName })
           }
           await archive.finalize()
         }
         console.log(`👽️ 压缩包构建完成${needUpload ? "，准备上传阿里云OSS" : ""}`)
         if (!needUpload) return
-        const ossSavePath = `${targetOssObject}/${packageJson.version}/`
-        await uploadToOSS(ossSavePath, [webPath, appX86Path, appArmPath])
+        const ossSavePath = `${targetOssObject}/${pkgVersion}/`
+        await uploadToOSS(ossSavePath, zipTaskList)
         console.log(`🚀 文件已全部上传`)
       }
     }
