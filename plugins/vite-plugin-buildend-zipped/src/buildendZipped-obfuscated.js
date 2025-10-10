@@ -1,67 +1,134 @@
-;(function (_0x370d9b, _0x315bc1) {
-  const _0x19521b = a0_0xb291,
-    _0x5aa539 = _0x370d9b()
+;(function (_0x5bfed2, _0x3a0242) {
+  const _0x4a656a = a0_0x2c9f,
+    _0x5cee2e = _0x5bfed2()
   while (!![]) {
     try {
-      const _0x30e7db =
-        -parseInt(_0x19521b(0x175)) / 0x1 +
-        (-parseInt(_0x19521b(0x171)) / 0x2) * (parseInt(_0x19521b(0x191)) / 0x3) +
-        parseInt(_0x19521b(0x178)) / 0x4 +
-        -parseInt(_0x19521b(0x172)) / 0x5 +
-        -parseInt(_0x19521b(0x195)) / 0x6 +
-        -parseInt(_0x19521b(0x190)) / 0x7 +
-        parseInt(_0x19521b(0x16c)) / 0x8
-      if (_0x30e7db === _0x315bc1) break
-      else _0x5aa539["push"](_0x5aa539["shift"]())
-    } catch (_0x2529db) {
-      _0x5aa539["push"](_0x5aa539["shift"]())
+      const _0x4d995 =
+        (parseInt(_0x4a656a(0x1fe)) / 0x1) * (parseInt(_0x4a656a(0x1f0)) / 0x2) +
+        -parseInt(_0x4a656a(0x209)) / 0x3 +
+        -parseInt(_0x4a656a(0x1f8)) / 0x4 +
+        -parseInt(_0x4a656a(0x1db)) / 0x5 +
+        parseInt(_0x4a656a(0x1e2)) / 0x6 +
+        (parseInt(_0x4a656a(0x1de)) / 0x7) * (parseInt(_0x4a656a(0x1fb)) / 0x8) +
+        (parseInt(_0x4a656a(0x1ee)) / 0x9) * (parseInt(_0x4a656a(0x1f6)) / 0xa)
+      if (_0x4d995 === _0x3a0242) break
+      else _0x5cee2e["push"](_0x5cee2e["shift"]())
+    } catch (_0x3b529d) {
+      _0x5cee2e["push"](_0x5cee2e["shift"]())
     }
   }
-})(a0_0x52db, 0x61ae4)
-import a0_0x3ef636 from "fs"
-import a0_0x3fb302 from "path"
-import a0_0x4d521d from "archiver"
-import { createGzip } from "zlib"
-import a0_0x5349a6 from "ali-oss"
-function a0_0xb291(_0x4cc6c0, _0x3a86a4) {
-  const _0x52db4d = a0_0x52db()
+})(a0_0x5a6d, 0x1e4c1)
+import a0_0x57416b from "fs"
+import a0_0x33bfaf from "path"
+function a0_0x2c9f(_0xc532f9, _0x764894) {
+  const _0x5a6d40 = a0_0x5a6d()
   return (
-    (a0_0xb291 = function (_0xb29122, _0x1c8f9d) {
-      _0xb29122 = _0xb29122 - 0x169
-      let _0x56ea16 = _0x52db4d[_0xb29122]
-      return _0x56ea16
+    (a0_0x2c9f = function (_0x2c9fbb, _0x3a9be9) {
+      _0x2c9fbb = _0x2c9fbb - 0x1d1
+      let _0x8acce9 = _0x5a6d40[_0x2c9fbb]
+      return _0x8acce9
     }),
-    a0_0xb291(_0x4cc6c0, _0x3a86a4)
+    a0_0x2c9f(_0xc532f9, _0x764894)
   )
 }
-const uploadToOSS = (_0x574ac8, _0x425499 = []) => {
-  return new Promise(async (_0x5da502, _0x3617e4) => {
-    const _0x1dbc60 = a0_0xb291,
-      _0x3d4a87 = process[_0x1dbc60(0x17c)][_0x1dbc60(0x187)] || "",
-      _0x41a95e = process["env"][_0x1dbc60(0x183)] || ""
-    ;(!_0x3d4a87 || !_0x41a95e) && (console["log"](_0x1dbc60(0x173)), _0x3617e4())
-    const _0x584148 = new a0_0x5349a6({
-      region: _0x1dbc60(0x19c),
-      accessKeyId: _0x3d4a87,
-      accessKeySecret: _0x41a95e,
-      bucket: _0x1dbc60(0x18c),
+import a0_0x518d56 from "archiver"
+function a0_0x5a6d() {
+  const _0x45ec5c = [
+    "👽️\x20压缩包构建完成",
+    "NoSuchKey",
+    "**/*",
+    "basename",
+    "jg-deliver",
+    "dist/appImage",
+    "🚚\x20开始构建产物压缩包",
+    "resolve",
+    "renameSync",
+    "build",
+    "oss-cn-shanghai",
+    "utf-8",
+    "1146725GUDnAF",
+    "mkdirSync",
+    "existsSync",
+    "28vjRQJA",
+    "🚨\x20未读取到OSS_ACCESS_KEY_ID或OSS_ACCESS_KEY_SECRET配置",
+    ".tar.gz",
+    "env",
+    "1240200LxdLdg",
+    "url",
+    "📤\x20文件已成功上传，下载地址：",
+    "rmSync",
+    "version",
+    "dist",
+    "online",
+    "🚨\x20无上传文件，请确认文件是否存在",
+    "，准备上传阿里云OSS",
+    "OSS_ACCESS_KEY_SECRET",
+    "post",
+    "🚀\x20文件已全部上传",
+    "5085cVYXiK",
+    "outDir",
+    "4906QGOujM",
+    "📁\x20成功创建产物目录：",
+    "glob",
+    "pipe",
+    "parse",
+    "mode",
+    "2480gZZKKZ",
+    "head",
+    "437920sBzUvI",
+    "cwd",
+    "log",
+    "495664Caccgc",
+    "createWriteStream",
+    "-frontend-",
+    "22kzsKEz",
+    "**/.DS_Store",
+    "**/.AppleDouble",
+    "package.json",
+    "-x86_64",
+    "-app-",
+    "length",
+    "🚨\x20请填写项目名称简写，例如：pmg",
+    "code",
+    "**/__MACOSX/**",
+    "tar",
+    "557088pERQjo"
+  ]
+  a0_0x5a6d = function () {
+    return _0x45ec5c
+  }
+  return a0_0x5a6d()
+}
+import { createGzip } from "zlib"
+import a0_0x3f1ca1 from "ali-oss"
+const uploadToOSS = (_0x54a729, _0x1f2452 = []) => {
+  return new Promise(async (_0x172039, _0x5e55b5) => {
+    const _0x368a9f = a0_0x2c9f,
+      _0x25d7b1 = process["env"]["OSS_ACCESS_KEY_ID"] || "",
+      _0x3539e3 = process[_0x368a9f(0x1e1)][_0x368a9f(0x1eb)] || ""
+    ;(!_0x25d7b1 || !_0x3539e3) && (console[_0x368a9f(0x1fa)](_0x368a9f(0x1df)), _0x5e55b5())
+    const _0x25c319 = new a0_0x3f1ca1({
+      region: _0x368a9f(0x1d9),
+      accessKeyId: _0x25d7b1,
+      accessKeySecret: _0x3539e3,
+      bucket: _0x368a9f(0x1d3),
       authorizationV4: !![]
     })
     try {
-      if (!_0x425499["length"]) return console[_0x1dbc60(0x176)](_0x1dbc60(0x192))
-      for (const _0x32c749 of _0x425499) {
-        const _0x4b7b37 = "" + _0x574ac8 + a0_0x3fb302[_0x1dbc60(0x18e)](_0x32c749)
+      if (!_0x1f2452[_0x368a9f(0x204)]) return console[_0x368a9f(0x1fa)](_0x368a9f(0x1e9))
+      for (const _0x4a59d7 of _0x1f2452) {
+        const _0x595f5b = "" + _0x54a729 + a0_0x33bfaf[_0x368a9f(0x1d2)](_0x4a59d7)
         try {
-          await _0x584148[_0x1dbc60(0x196)](_0x4b7b37), await _0x584148[_0x1dbc60(0x17d)](_0x4b7b37)
-        } catch (_0x16b113) {
-          if (_0x16b113["code"] !== _0x1dbc60(0x185)) throw _0x16b113
+          await _0x25c319[_0x368a9f(0x1f7)](_0x595f5b), await _0x25c319["delete"](_0x595f5b)
+        } catch (_0x41d268) {
+          if (_0x41d268[_0x368a9f(0x206)] !== _0x368a9f(0x20b)) throw _0x41d268
         }
-        const _0x157ecb = await _0x584148[_0x1dbc60(0x179)](_0x4b7b37, _0x32c749)
-        console[_0x1dbc60(0x176)](_0x1dbc60(0x19a) + _0x157ecb[_0x1dbc60(0x18d)])
+        const _0x9f919c = await _0x25c319["put"](_0x595f5b, _0x4a59d7)
+        console[_0x368a9f(0x1fa)](_0x368a9f(0x1e4) + _0x9f919c[_0x368a9f(0x1e3)])
       }
-      _0x5da502()
-    } catch (_0x149271) {
-      console[_0x1dbc60(0x176)](_0x1dbc60(0x16d), _0x149271), _0x3617e4()
+      _0x172039()
+    } catch (_0xb65cf3) {
+      console["log"]("🚨\x20OSS上传失败", _0xb65cf3), _0x5e55b5()
     }
   })
 }
@@ -71,137 +138,81 @@ export default function buildEndZipped({
   proShortName: proShortName = "",
   targetOssObject: targetOssObject = ""
 } = {}) {
-  const _0x1636db = a0_0xb291
-  let _0xd03ca4, _0x371aca, _0x33807a, _0x367c00
+  const _0x3c4fbd = a0_0x2c9f
+  let _0x263c40, _0x6676a0, _0x2c89e0, _0x2ce445
   return {
     name: "vite-plugin-buildend-zipped",
-    apply: "build",
-    configResolved(_0x1337ea) {
-      const _0xea6f15 = a0_0xb291
-      ;(_0xd03ca4 = a0_0x3fb302[_0xea6f15(0x169)](_0x1337ea[_0xea6f15(0x18a)][_0xea6f15(0x198)])),
-        (_0x371aca = a0_0x3fb302[_0xea6f15(0x169)](process[_0xea6f15(0x197)](), _0xea6f15(0x17f))),
-        (_0x33807a = a0_0x3fb302["resolve"](process[_0xea6f15(0x197)](), "package.json")),
-        (_0x367c00 = _0x1337ea[_0xea6f15(0x193)])
+    apply: _0x3c4fbd(0x1d8),
+    configResolved(_0x22e8d7) {
+      const _0x377941 = _0x3c4fbd
+      ;(_0x263c40 = a0_0x33bfaf[_0x377941(0x1d6)](_0x22e8d7[_0x377941(0x1d8)][_0x377941(0x1ef)])),
+        (_0x6676a0 = a0_0x33bfaf[_0x377941(0x1d6)](process[_0x377941(0x1f9)](), _0x377941(0x1d4))),
+        (_0x2c89e0 = a0_0x33bfaf[_0x377941(0x1d6)](process[_0x377941(0x1f9)](), _0x377941(0x201))),
+        (_0x2ce445 = _0x22e8d7[_0x377941(0x1f5)])
+    },
+    writeBundle() {
+      const _0x36d341 = _0x3c4fbd
+      if (_0x2ce445 !== _0x36d341(0x1e8)) return
+      const _0xde8492 = a0_0x57416b["readdirSync"](_0x263c40),
+        _0x288c0 = a0_0x33bfaf[_0x36d341(0x1d6)](_0x263c40, _0x36d341(0x1e7))
+      if (!a0_0x57416b[_0x36d341(0x1dd)](_0x288c0)) a0_0x57416b[_0x36d341(0x1dc)](_0x288c0, { recursive: !![] })
+      for (const _0x3879ce of _0xde8492) {
+        if (_0x3879ce === "config" || _0x3879ce === _0x36d341(0x1e7)) continue
+        const _0x486bd6 = a0_0x33bfaf["resolve"](_0x263c40, _0x3879ce),
+          _0x248f7c = a0_0x33bfaf[_0x36d341(0x1d6)](_0x288c0, _0x3879ce)
+        a0_0x57416b[_0x36d341(0x1d7)](_0x486bd6, _0x248f7c)
+      }
     },
     closeBundle: {
       sequential: !![],
-      order: _0x1636db(0x181),
+      order: _0x3c4fbd(0x1ec),
       handler: async () => {
-        const _0x510059 = _0x1636db
-        if (_0x367c00 !== _0x510059(0x19d)) return
-        if (!proShortName) return console[_0x510059(0x176)]("🚨\x20请填写项目名称简写，例如：pmg")
-        if (!targetOssObject) return console["log"](_0x510059(0x16b))
-        if (!a0_0x3ef636[_0x510059(0x182)](_0x33807a)) return
-        if (!a0_0x3ef636["existsSync"](_0xd03ca4)) return
-        if (!a0_0x3ef636[_0x510059(0x182)](_0x371aca) && needBuildElectron) return
-        const _0x222b84 = JSON["parse"](a0_0x3ef636[_0x510059(0x19f)](_0x33807a, "utf-8"))[_0x510059(0x16f)],
-          _0x5b5605 = a0_0x3fb302[_0x510059(0x169)](process[_0x510059(0x197)](), _0x510059(0x16e), "" + _0x222b84)
-        if (a0_0x3ef636[_0x510059(0x182)](_0x5b5605)) a0_0x3ef636["rmSync"](_0x5b5605, { recursive: !![], force: !![] })
-        a0_0x3ef636[_0x510059(0x18b)](_0x5b5605, { recursive: !![] }),
-          console[_0x510059(0x176)](_0x510059(0x184) + _0x5b5605)
-        const _0x312498 = proShortName + _0x510059(0x16a) + _0x222b84,
-          _0x44a32e = proShortName + _0x510059(0x19e) + _0x222b84 + _0x510059(0x194),
-          _0x534fd2 = proShortName + _0x510059(0x19e) + _0x222b84 + _0x510059(0x18f),
-          _0x44a3b4 = a0_0x3fb302[_0x510059(0x169)](_0x5b5605, _0x312498 + _0x510059(0x180)),
-          _0x2cf367 = a0_0x3fb302[_0x510059(0x169)](_0x5b5605, _0x44a32e + _0x510059(0x180)),
-          _0x58abad = a0_0x3fb302[_0x510059(0x169)](_0x5b5605, _0x534fd2 + _0x510059(0x180)),
-          _0x1b8bf8 = a0_0x3fb302[_0x510059(0x169)](_0x371aca, _0x44a32e),
-          _0x44c856 = a0_0x3fb302[_0x510059(0x169)](_0x371aca, _0x534fd2)
-        console[_0x510059(0x176)](_0x510059(0x170))
-        const _0x288f41 = [_0x510059(0x174), _0x510059(0x19b), "**/__MACOSX/**"],
-          _0x33203d = needBuildElectron ? [_0x44a3b4, _0x2cf367, _0x58abad] : [_0x44a3b4]
-        for (const _0x14624e of _0x33203d) {
-          const _0x4eb66c = a0_0x4d521d(_0x510059(0x17e), { zlib: { level: 0x9 } }),
-            _0x5ec67d = createGzip(),
-            _0x492e2c = a0_0x3ef636[_0x510059(0x189)](_0x14624e)
-          _0x4eb66c[_0x510059(0x188)](_0x5ec67d)["pipe"](_0x492e2c)
-          if (_0x14624e === _0x44a3b4)
-            _0x4eb66c[_0x510059(0x199)](_0x510059(0x17a), { cwd: _0xd03ca4, ignore: _0x288f41 }, { prefix: _0x312498 })
+        const _0x53eb69 = _0x3c4fbd
+        if (_0x2ce445 !== "online") return
+        if (!proShortName) return console[_0x53eb69(0x1fa)](_0x53eb69(0x205))
+        if (!targetOssObject) return console[_0x53eb69(0x1fa)]("🚨\x20请填写AliOSS存储对象，例如：pmg/main-server")
+        if (!a0_0x57416b[_0x53eb69(0x1dd)](_0x2c89e0)) return
+        if (!a0_0x57416b[_0x53eb69(0x1dd)](_0x263c40)) return
+        if (!a0_0x57416b["existsSync"](_0x6676a0) && needBuildElectron) return
+        const _0xbf5d9e = JSON[_0x53eb69(0x1f4)](a0_0x57416b["readFileSync"](_0x2c89e0, _0x53eb69(0x1da)))[
+            _0x53eb69(0x1e6)
+          ],
+          _0x3e05c1 = a0_0x33bfaf[_0x53eb69(0x1d6)](process["cwd"](), "dist", "" + _0xbf5d9e)
+        if (a0_0x57416b["existsSync"](_0x3e05c1))
+          a0_0x57416b[_0x53eb69(0x1e5)](_0x3e05c1, { recursive: !![], force: !![] })
+        a0_0x57416b[_0x53eb69(0x1dc)](_0x3e05c1, { recursive: !![] }), console["log"](_0x53eb69(0x1f1) + _0x3e05c1)
+        const _0x401dbc = proShortName + _0x53eb69(0x1fd) + _0xbf5d9e,
+          _0x449a54 = proShortName + _0x53eb69(0x203) + _0xbf5d9e + _0x53eb69(0x202),
+          _0x14906a = proShortName + _0x53eb69(0x203) + _0xbf5d9e + "-arm64",
+          _0x8999d1 = a0_0x33bfaf[_0x53eb69(0x1d6)](_0x3e05c1, _0x401dbc + ".tar.gz"),
+          _0x247e31 = a0_0x33bfaf["resolve"](_0x3e05c1, _0x449a54 + _0x53eb69(0x1e0)),
+          _0x15a486 = a0_0x33bfaf[_0x53eb69(0x1d6)](_0x3e05c1, _0x14906a + _0x53eb69(0x1e0)),
+          _0x4879de = a0_0x33bfaf["resolve"](_0x6676a0, _0x449a54),
+          _0x1c3a4b = a0_0x33bfaf[_0x53eb69(0x1d6)](_0x6676a0, _0x14906a)
+        console[_0x53eb69(0x1fa)](_0x53eb69(0x1d5))
+        const _0x3bcab8 = [_0x53eb69(0x1ff), _0x53eb69(0x200), _0x53eb69(0x207)],
+          _0x2df80b = needBuildElectron ? [_0x8999d1, _0x247e31, _0x15a486] : [_0x8999d1]
+        for (const _0x26a0a2 of _0x2df80b) {
+          const _0x2aedda = a0_0x518d56(_0x53eb69(0x208), { zlib: { level: 0x9 } }),
+            _0x1f46bc = createGzip(),
+            _0x2bab03 = a0_0x57416b[_0x53eb69(0x1fc)](_0x26a0a2)
+          _0x2aedda[_0x53eb69(0x1f3)](_0x1f46bc)[_0x53eb69(0x1f3)](_0x2bab03)
+          if (_0x26a0a2 === _0x8999d1)
+            _0x2aedda[_0x53eb69(0x1f2)](_0x53eb69(0x1d1), { cwd: _0x263c40, ignore: _0x3bcab8 }, { prefix: _0x401dbc })
           else {
-            if (_0x14624e === _0x2cf367)
-              _0x4eb66c[_0x510059(0x199)](
-                _0x510059(0x17a),
-                { cwd: _0x1b8bf8, ignore: _0x288f41 },
-                { prefix: _0x44a32e }
-              )
+            if (_0x26a0a2 === _0x247e31)
+              _0x2aedda["glob"](_0x53eb69(0x1d1), { cwd: _0x4879de, ignore: _0x3bcab8 }, { prefix: _0x449a54 })
             else
-              _0x14624e === _0x58abad &&
-                _0x4eb66c[_0x510059(0x199)](
-                  _0x510059(0x17a),
-                  { cwd: _0x44c856, ignore: _0x288f41 },
-                  { prefix: _0x534fd2 }
-                )
+              _0x26a0a2 === _0x15a486 &&
+                _0x2aedda[_0x53eb69(0x1f2)]("**/*", { cwd: _0x1c3a4b, ignore: _0x3bcab8 }, { prefix: _0x14906a })
           }
-          await _0x4eb66c["finalize"]()
+          await _0x2aedda["finalize"]()
         }
-        console[_0x510059(0x176)](_0x510059(0x17b) + (needUpload ? _0x510059(0x177) : ""))
+        console["log"](_0x53eb69(0x20a) + (needUpload ? _0x53eb69(0x1ea) : ""))
         if (!needUpload) return
-        const _0x1df88a = targetOssObject + "/" + _0x222b84 + "/"
-        await uploadToOSS(_0x1df88a, _0x33203d), console[_0x510059(0x176)](_0x510059(0x186))
+        const _0x183d08 = targetOssObject + "/" + _0xbf5d9e + "/"
+        await uploadToOSS(_0x183d08, _0x2df80b), console[_0x53eb69(0x1fa)](_0x53eb69(0x1ed))
       }
     }
   }
-}
-function a0_0x52db() {
-  const _0x52efa4 = [
-    "createWriteStream",
-    "build",
-    "mkdirSync",
-    "jg-deliver",
-    "url",
-    "basename",
-    "-arm64",
-    "1113987zPsmWd",
-    "3lQnzwJ",
-    "🚨\x20无上传文件，请确认文件是否存在",
-    "mode",
-    "-x86_64",
-    "3004050Hcijrq",
-    "head",
-    "cwd",
-    "outDir",
-    "glob",
-    "📤\x20文件已成功上传，下载地址：",
-    "**/.AppleDouble",
-    "oss-cn-shanghai",
-    "online",
-    "-app-",
-    "readFileSync",
-    "resolve",
-    "-frontend-",
-    "🚨\x20请填写AliOSS存储对象，例如：pmg/main-server",
-    "14328096dUSJga",
-    "🚨\x20OSS上传失败",
-    "dist",
-    "version",
-    "🚚\x20开始构建产物压缩包",
-    "671270EewuHJ",
-    "2424710eOpxlE",
-    "🚨\x20未读取到OSS_ACCESS_KEY_ID或OSS_ACCESS_KEY_SECRET配置",
-    "**/.DS_Store",
-    "615494gRArTj",
-    "log",
-    "，准备上传阿里云OSS",
-    "2819900dVIKLQ",
-    "put",
-    "**/*",
-    "👽️\x20压缩包构建完成",
-    "env",
-    "delete",
-    "tar",
-    "dist/appImage",
-    ".tar.gz",
-    "post",
-    "existsSync",
-    "OSS_ACCESS_KEY_SECRET",
-    "📁\x20成功创建产物目录：",
-    "NoSuchKey",
-    "🚀\x20文件已全部上传",
-    "OSS_ACCESS_KEY_ID",
-    "pipe"
-  ]
-  a0_0x52db = function () {
-    return _0x52efa4
-  }
-  return a0_0x52db()
 }

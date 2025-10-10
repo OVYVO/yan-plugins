@@ -58,6 +58,18 @@ export default function buildEndZipped({
       packageJsonPath = path.resolve(process.cwd(), "package.json")
       mode = viteConfig.mode
     },
+    writeBundle() {
+      if (mode !== "online") return
+      const files = fs.readdirSync(webStaticFilePath)
+      const distPath = path.resolve(webStaticFilePath, "dist")
+      if (!fs.existsSync(distPath)) fs.mkdirSync(distPath, { recursive: true })
+      for (const file of files) {
+        if (file === "config" || file === "dist") continue
+        const sourcePath = path.resolve(webStaticFilePath, file)
+        const targetPath = path.resolve(distPath, file)
+        fs.renameSync(sourcePath, targetPath)
+      }
+    },
     closeBundle: {
       sequential: true,
       order: "post",
