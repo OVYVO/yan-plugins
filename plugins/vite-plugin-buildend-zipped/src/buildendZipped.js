@@ -39,6 +39,17 @@ const uploadToOSS = (ossSavePath, originPaths = []) => {
     }
   })
 }
+const handlerBundle = async webStaticFilePath => {
+  const files = fs.readdirSync(webStaticFilePath)
+  const distPath = path.resolve(webStaticFilePath, "dist")
+  if (!fs.existsSync(distPath)) fs.mkdirSync(distPath, { recursive: true })
+  for (const file of files) {
+    if (file === "config" || file === "dist") continue
+    const sourcePath = path.resolve(webStaticFilePath, file)
+    const targetPath = path.resolve(distPath, file)
+    fs.renameSync(sourcePath, targetPath)
+  }
+}
 export default function buildEndZipped({
   needUpload = true,
   needBuildElectron = true,
@@ -58,23 +69,12 @@ export default function buildEndZipped({
       packageJsonPath = path.resolve(process.cwd(), "package.json")
       mode = viteConfig.mode
     },
-    writeBundle() {
-      if (mode !== "online") return
-      const files = fs.readdirSync(webStaticFilePath)
-      const distPath = path.resolve(webStaticFilePath, "dist")
-      if (!fs.existsSync(distPath)) fs.mkdirSync(distPath, { recursive: true })
-      for (const file of files) {
-        if (file === "config" || file === "dist") continue
-        const sourcePath = path.resolve(webStaticFilePath, file)
-        const targetPath = path.resolve(distPath, file)
-        fs.renameSync(sourcePath, targetPath)
-      }
-    },
     closeBundle: {
       sequential: true,
       order: "post",
       handler: async () => {
         if (mode !== "online") return
+        await handlerBundle(webStaticFilePath)
         if (!proShortName) return console.log("🚨 请填写项目名称简写，例如：pmg")
         if (!targetOssObject) return console.log("🚨 请填写AliOSS存储对象，例如：pmg/main-server")
         if (!fs.existsSync(packageJsonPath)) return
