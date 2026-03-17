@@ -1,0 +1,21 @@
+{
+  "name": "vite-plugin-split-dist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.1",
+  "dependencies": {
+    "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "unbuild": "^2.0.0",
+    "vite": "^8.0.0"
+  }
+}
